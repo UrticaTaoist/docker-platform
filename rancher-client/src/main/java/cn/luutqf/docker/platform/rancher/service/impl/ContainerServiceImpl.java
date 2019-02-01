@@ -134,6 +134,7 @@ public class ContainerServiceImpl implements ContainerService {
                 if (!send){
                     throw new NullPointerException();
                 }
+                start(body.getId());
                 return Optional.of(body);
             }
         } catch (IOException | NullPointerException e) {
