@@ -1,0 +1,8 @@
+rootProject.name = 'docker-platform'
+include 'docker-client'
+include 'docker-platform-common'
+include 'rancher-client'
+include 'k8s-client'
+include 'linux-file-client'
+include 'docker-task'
+
