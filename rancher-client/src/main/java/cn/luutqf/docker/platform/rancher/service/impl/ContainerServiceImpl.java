@@ -123,13 +123,25 @@ public class ContainerServiceImpl implements ContainerService {
                 log.info("container created");
                 //todo prefix
                 stringRedisTemplate.opsForValue().set(body.getId(), myContainer.toString(), myContainer.getTtl(), TimeUnit.SECONDS);
-                sinkSender.output().send(MessageBuilder.withPayload("produce a message ：s当联考卷速度ace.com").build());
+                boolean send = false;
+                for (int i = 0; i < 10; i++) {
+                    send = sinkSender.redisSet().send(MessageBuilder.withPayload(myContainer).build());
+                    if(send){
+                        break;
+                    }
+                    Thread.sleep(MinRequestTime);
+                }
+                if (!send){
+                    throw new NullPointerException();
+                }
                 return Optional.of(body);
             }
         } catch (IOException | NullPointerException e) {
             //todo field
             delete(container.getId());
             throw new RancherException(512);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return Optional.empty();
     }

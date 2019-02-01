@@ -17,7 +17,7 @@ spring:
     password: luutqf
 
   rabbitmq:
-    addresses: 192.168.20.114
+    addresses: 114.116.99.165
     port: 5672
     username: luutqf
     password: 00000aaaaa

@@ -7,4 +7,5 @@ package cn.luutqf.docker.platform.common.constant;
  */
 public class BinderConstants {
     public static final String REDIS_BINDER = "redis";
+    public static final String REDIS_SET_BINDER = "redis_set";
 }
